@@ -97,7 +97,7 @@ async def removesession(client: Client, message: Message):
 @app.on_message(filters.private & filters.command("allapprove"))
 async def allapprove(client: Client, message: Message):
     if len(message.command) < 2:
-        await safe_reply(message, "<b>❗ ᴜsᴀɢᴇ :</b> <code>/allapprove &lt;channel/group id&gt;</code>")
+        await safe_reply(message, "<b>♨️ ᴜsᴀɢᴇ :</b> <code>/allapprove &lt;channel/group id&gt;</code>")
         return
 
     session_data = session_col.find_one({"_id": "session"})
