@@ -61,7 +61,7 @@ async def start(client: Client, message: Message):
 @app.on_message(filters.private & filters.command("newsession"))
 async def newsession(client: Client, message: Message):
     if len(message.command) < 2:
-        await safe_reply(message, "<b>⚠️ sᴇɴᴅ ʏᴏᴜʀ ᴘʏʀᴏɢʀᴀᴍ sᴇssɪᴏɴ ʟɪᴋᴇ</b> <code>/newsession &lt;your_string_session&gt;</code>")
+        await safe_reply(message, "<b>⚠️ sᴇɴᴅ ʏᴏᴜʀ ᴘʏʀᴏɢʀᴀᴍ sᴇssɪᴏɴ ʟɪᴋᴇ</b> <code>/newsession &lt;your_session&gt;</code>")
         return
     
     string = message.text.split(" ", 1)[1]
@@ -86,7 +86,7 @@ async def removesession(client: Client, message: Message):
         if result.deleted_count:
             await safe_reply(message, "<b>🗑️ sᴇssɪᴏɴ ʀᴇᴍᴏᴠᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ.</b>")
         else:
-            await safe_reply(message, "<b>⚠️ you didn't add any session. Please add first.</b>")
+            await safe_reply(message, "<b🚫 ʏᴏᴜ ᴅɪᴅɴ'ᴛ ᴀᴅᴅ ᴀɴʏ sᴇssɪᴏɴ, ᴘʟᴇᴀsᴇ ᴀᴅᴅ ғɪʀsᴛ.</b>")
 
     except Exception as e:
         await safe_reply(
