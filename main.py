@@ -46,7 +46,7 @@ async def start(client: Client, message: Message):
     await client.send_photo(
         chat_id=message.chat.id,
         photo=photo_url,
-        caption=f"<b>✦ » ʜᴇʏ {message.from_user.mention}!</b>\n<b>✦ » ɪ ᴀᴍ ᴛᴇʟᴇɢʀᴀᴍ ʀᴇǫᴜᴇsᴛ ᴀᴘᴘʀᴏᴠᴇʀ ʙᴏᴛ ғᴏʀ ɢʀᴏᴜᴘ ᴄʜᴀɴɴᴇʟ.</b>\n\n<b>✦ » ɪ ᴄᴀɴ ᴀᴄᴄᴇᴘᴄᴛ ɴᴇᴡ ʀᴇǫᴜᴇsᴛ ᴀɴᴅ ᴘᴇɴᴅɪɴɢ ʀᴇǫᴜᴇsᴛ. ᴛᴀᴘ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ᴀɴᴅ sᴇᴇ ʜᴇʟᴘs ᴀɴᴅ ᴄᴏᴍᴍᴀɴᴅs.</b>\n\n<b>✦ » 𝐏ᴏᴡᴇʀᴇᴅ 𝖡ʏ » <a href='https://t.me/TheSigmaCoder'>⎯᪵፝֟፝֟⎯꯭𓆩꯭ 𝐀 ꯭ʟ ꯭ᴘ ꯭ʜ꯭ ᴧ꯭⎯꯭꯭‌꯭🥂꯭༎꯭ 𓆪</a></b>",
+        caption=f"<b>✦ » ʜᴇʏ {message.from_user.mention} !!</b>"\n<b>✦ » ɪ ᴀᴍ ᴛᴇʟᴇɢʀᴀᴍ ʀᴇǫᴜᴇsᴛ ᴀᴘᴘʀᴏᴠᴇʀ ʙᴏᴛ ғᴏʀ ɢʀᴏᴜᴘ ᴄʜᴀɴɴᴇʟ.</b>\n\n<b>✦ » ɪ ᴄᴀɴ ᴀᴄᴄᴇᴘᴄᴛ ɴᴇᴡ ʀᴇǫᴜᴇsᴛ ᴀɴᴅ ᴘᴇɴᴅɪɴɢ ʀᴇǫᴜᴇsᴛ. ᴛᴀᴘ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ᴀɴᴅ sᴇᴇ ʜᴇʟᴘs ᴀɴᴅ ᴄᴏᴍᴍᴀɴᴅs.</b>\n\n<b>✦ » 𝐏ᴏᴡᴇʀᴇᴅ 𝖡ʏ » <a href='https://t.me/TheSigmaCoder'>⎯᪵፝֟፝֟⎯꯭𓆩꯭ 𝐀 ꯭ʟ ꯭ᴘ ꯭ʜ꯭ ᴧ꯭⎯꯭꯭‌꯭🥂꯭༎꯭ 𓆪</a></b>",
         reply_markup=InlineKeyboardMarkup(buttons)
     )
 
@@ -148,8 +148,8 @@ async def help_callback(_, query):
             "<b>String session</b> :- ɢᴏ ᴛᴏ @StringFatherRobot ᴀɴᴅ ɢᴇɴᴇʀᴀᴛᴇ ʏᴏᴜʀ sᴇssɪᴏɴ."
         ),
         reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton("« ʙᴀᴄᴋ", callback_data="start_back")],
-            [InlineKeyboardButton("✘ ᴄʟᴏsᴇ", callback_data="close")]
+            [InlineKeyboardButton("ʙᴀᴄᴋ", callback_data="start_back"),
+            InlineKeyboardButton("ᴄʟᴏsᴇ", callback_data="close")]
         ]),
         parse_mode=enums.ParseMode.HTML
     )
