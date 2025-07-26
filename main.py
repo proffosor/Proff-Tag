@@ -1,4 +1,4 @@
-from pyrogram import Client, filters
+from pyrogram import Client, filters, enums
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, ChatJoinRequest
 from pyrogram.errors import ChatAdminRequired, FloodWait, PeerIdInvalid
 from pymongo import MongoClient
@@ -12,17 +12,31 @@ BOT_TOKEN = getenv("BOT_TOKEN", "7635729732:AAG6QShFz20CmQgzcoRSDURw-RV9kDCWdEQ"
 MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://CHATBOT:Purvichat@cluster0.i3u97sj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 
 # ====== Init Clients ======
-app = Client("AutoApprovedBot", bot_token=BOT_TOKEN, api_id=API_ID, api_hash=API_HASH)
+app = Client(
+    "AutoApprovedBot",
+    bot_token=BOT_TOKEN,
+    api_id=API_ID,
+    api_hash=API_HASH,
+    parse_mode=enums.ParseMode.HTML  # Default parse mode
+)
 mongo = MongoClient(MONGO_DB_URI)
 db = mongo.autoapprove
 session_col = db.sessions
+
+# ====== Utility Functions ======
+async def safe_reply(message, text, **kwargs):
+    try:
+        await message.reply(text, parse_mode=enums.ParseMode.HTML, **kwargs)
+    except Exception as e:
+        print(f"Error sending message: {e}")
+        await message.reply(text, parse_mode=None, **kwargs)
 
 # ====== Commands ======
 @app.on_message(filters.private & filters.command("start"))
 async def start(client: Client, message: Message):
     approved_bot = await client.get_me()
     buttons = [
-        [InlineKeyboardButton("⚜️ ᴀᴅᴅ �ᴇ ʙᴀʙʏ ⚜️", url=f"http://t.me/{approved_bot.username}?startgroup=botstart")],
+        [InlineKeyboardButton("⚜️ ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ ⚜️", url=f"http://t.me/{approved_bot.username}?startgroup=botstart")],
         [InlineKeyboardButton("🔸 sᴜᴘᴘᴏʀᴛ 🔸", url="https://t.me/PURVI_SUPPORT"),
          InlineKeyboardButton("▫️ ᴜᴘᴅᴀᴛᴇs ▫️", url="https://t.me/PURVI_UPDATES")]
     ]
@@ -30,14 +44,15 @@ async def start(client: Client, message: Message):
     await client.send_photo(
         chat_id=message.chat.id,
         photo=photo_url,
-        caption=f"**✦ » ʜᴇʏ {message.from_user.mention}!**\n**✦ » ɪ ᴀᴍ ᴀᴜᴛᴏ ᴀᴘᴘʀᴏᴠᴇ ʙᴏᴛ.**\n\n**Use `/newsession <session_string>` to set your session.**",
+        caption=f"<b>✦ » ʜᴇʏ {message.from_user.mention}!</b>\n<b>✦ » ɪ ᴀᴍ ᴀᴜᴛᴏ ᴀᴘᴘʀᴏᴠᴇ ʙᴏᴛ.</b>\n\nUse <code>/newsession &lt;session_string&gt;</code> to set your session.",
         reply_markup=InlineKeyboardMarkup(buttons)
     )
 
 @app.on_message(filters.private & filters.command("newsession"))
 async def newsession(client: Client, message: Message):
     if len(message.command) < 2:
-        return await message.reply("⚠️ Send your Pyrogram session like: `/newsession <your_string_session>`")
+        await safe_reply(message, "⚠️ Send your Pyrogram session like: <code>/newsession &lt;your_string_session&gt;</code>")
+        return
     
     string = message.text.split(" ", 1)[1]
     try:
@@ -48,26 +63,28 @@ async def newsession(client: Client, message: Message):
                 {"_id": "session", "string": string, "user_id": user.id}, 
                 upsert=True
             )
-            await message.reply(f"✅ Session set successfully for user: `{user.first_name}`")
+            await safe_reply(message, f"✅ Session set successfully for user: <code>{user.first_name}</code>")
     except Exception as e:
-        await message.reply(f"❌ Invalid session: {e}")
+        await safe_reply(message, f"❌ Invalid session: {str(e)}")
 
 @app.on_message(filters.private & filters.command("removesession"))
 async def removesession(client: Client, message: Message):
     result = session_col.delete_one({"_id": "session"})
     if result.deleted_count:
-        await message.reply("🗑️ Session removed successfully.")
+        await safe_reply(message, "🗑️ Session removed successfully.")
     else:
-        await message.reply("⚠️ No session found.")
+        await safe_reply(message, "⚠️ No session found.")
 
 @app.on_message(filters.private & filters.command("allapprove"))
 async def allapprove(client: Client, message: Message):
     if len(message.command) < 2:
-        return await message.reply("❗ Usage: `/allapprove <chat_id>`")
+        await safe_reply(message, "❗ Usage: <code>/allapprove &lt;chat_id&gt;</code>")
+        return
     
     session_data = session_col.find_one({"_id": "session"})
     if not session_data:
-        return await message.reply("❌ No session found. Use `/newsession <session_string>` to add one.")
+        await safe_reply(message, "❌ No session found. Use <code>/newsession &lt;session_string&gt;</code> to add one.")
+        return
     
     chat_id = message.command[1]
     try:
@@ -87,22 +104,29 @@ async def allapprove(client: Client, message: Message):
                 except Exception as err:
                     print(f"Failed to approve {req.from_user.id}: {err}")
             
-            await message.reply(f"✅ Approved {approved} join requests in `{chat_id}`")
+            await safe_reply(message, f"✅ Approved {approved} join requests in <code>{chat_id}</code>")
     except ChatAdminRequired:
-        await message.reply("❌ Error: The user session is not admin in the chat.")
+        await safe_reply(message, "❌ Error: The user session is not admin in the chat.")
     except PeerIdInvalid:
-        await message.reply("❌ Error: Invalid Chat ID.")
+        await safe_reply(message, "❌ Error: Invalid Chat ID.")
     except Exception as e:
-        await message.reply(f"❌ Error occurred: {e}")
+        await safe_reply(message, f"❌ Error occurred: {str(e)}")
 
 @app.on_chat_join_request(filters.group | filters.channel)
 async def autoapprove(client: Client, message: ChatJoinRequest):
     chat = message.chat
     user = message.from_user
     print(f"{user.first_name} requested to join {chat.title} ✅")
-    await client.approve_chat_join_request(chat_id=chat.id, user_id=user.id)
-    if not user.is_bot:
-        await client.send_message(user.id, f"**✦ » ʜᴇʟʟᴏ {user.mention}, ʏᴏᴜʀ ʀᴇQᴜᴇsᴛ ɪɴ `{chat.title}` ɪs ᴀᴜᴛᴏ-ᴀᴘᴘʀᴏᴠᴇᴅ.**")
+    try:
+        await client.approve_chat_join_request(chat_id=chat.id, user_id=user.id)
+        if not user.is_bot:
+            await client.send_message(
+                user.id,
+                f"<b>✦ » ʜᴇʟʟᴏ {user.mention}, ʏᴏᴜʀ ʀᴇQᴜᴇsᴛ ɪɴ {chat.title} ɪs ᴀᴜᴛᴏ-ᴀᴘᴘʀᴏᴠᴇᴅ.</b>",
+                parse_mode=enums.ParseMode.HTML
+            )
+    except Exception as e:
+        print(f"Error approving request: {e}")
 
 if __name__ == "__main__":
     print("Auto Approved Bot started...")
