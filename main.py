@@ -115,18 +115,20 @@ async def allapprove(client: Client, message: Message):
 @app.on_chat_join_request(filters.group | filters.channel)
 async def autoapprove(client: Client, message: ChatJoinRequest):
     chat = message.chat
-    user = message.user  
-    print(f"{user.first_name} requested to join {chat.title} ✅")
-    try:
-        await client.approve_chat_join_request(chat_id=chat.id, user_id=user.id)
-        if not user.is_bot:
-            await client.send_message(
-                user.id,
-                f"<b>✦ » ʜᴇʟʟᴏ {user.mention}, ʏᴏᴜʀ ʀᴇQᴜᴇsᴛ ɪɴ {chat.title} ɪs ᴀᴜᴛᴏ-ᴀᴘᴘʀᴏᴠᴇᴅ.</b>",
-                parse_mode=enums.ParseMode.HTML
-            )
-    except Exception as e:
-        print(f"Error approving request: {e}")
+    user_id = message.from_user.id if message.from_user else message.user.id  # Fallback
+    user = await client.get_users(user_id)
+
+    print(f"{user.first_name} Approved 👍")
+    
+    await client.approve_chat_join_request(chat_id=chat.id, user_id=user.id)
+
+    if user.is_bot:
+        return
+    
+    await client.send_message(
+        user.id,
+        f"**✦ » ʜᴇʟʟᴏ {user.mention} ʏᴏᴜ ᴀʀᴇ ɴᴏᴡ ᴀᴜᴛᴏ ᴀᴘᴘʀᴏᴠᴇᴅ ᴀ ᴄʜᴀᴛ : {chat.title}**\n\n**ᴠɪsɪᴛ » @PURVI_BOTS**"
+    )
 
 if __name__ == "__main__":
     print("Auto Approved Bot started...")
