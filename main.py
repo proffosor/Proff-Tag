@@ -115,7 +115,7 @@ async def allapprove(client: Client, message: Message):
 @app.on_chat_join_request(filters.group | filters.channel)
 async def autoapprove(client: Client, message: ChatJoinRequest):
     chat = message.chat
-    user = message.from_user
+    user = message.user  
     print(f"{user.first_name} requested to join {chat.title} ✅")
     try:
         await client.approve_chat_join_request(chat_id=chat.id, user_id=user.id)
