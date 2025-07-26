@@ -80,30 +80,30 @@ async def allapprove(client: Client, message: Message):
     if len(message.command) < 2:
         await safe_reply(message, "❗ Usage: <code>/allapprove &lt;chat_id&gt;</code>")
         return
-    
+
     session_data = session_col.find_one({"_id": "session"})
     if not session_data:
         await safe_reply(message, "❌ No session found. Use <code>/newsession &lt;session_string&gt;</code> to add one.")
         return
-    
+
     chat_id = message.command[1]
     try:
         async with Client(
-            ":memory:", 
-            session_string=session_data['string'], 
-            api_id=API_ID, 
+            ":memory:",
+            session_string=session_data['string'],
+            api_id=API_ID,
             api_hash=API_HASH
         ) as user_client:
             approved = 0
             async for req in user_client.get_chat_join_requests(int(chat_id)):
                 try:
-                    await user_client.approve_chat_join_request(int(chat_id), req.from_user.id)
+                    await user_client.approve_chat_join_request(int(chat_id), req.user.id)
                     approved += 1
                 except FloodWait as e:
                     await asyncio.sleep(e.value)
                 except Exception as err:
-                    print(f"Failed to approve {req.from_user.id}: {err}")
-            
+                    print(f"Failed to approve {req.user.id}: {err}")
+
             await safe_reply(message, f"✅ Approved {approved} join requests in <code>{chat_id}</code>")
     except ChatAdminRequired:
         await safe_reply(message, "❌ Error: The user session is not admin in the chat.")
