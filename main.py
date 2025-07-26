@@ -36,10 +36,11 @@ async def safe_reply(message, text, **kwargs):
 async def start(client: Client, message: Message):
     approved_bot = await client.get_me()
     buttons = [
-        [InlineKeyboardButton("⚜️ ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ ⚜️", url=f"http://t.me/{approved_bot.username}?startgroup=botstart")],
-        [InlineKeyboardButton("🔸 sᴜᴘᴘᴏʀᴛ 🔸", url="https://t.me/PURVI_SUPPORT"),
-         InlineKeyboardButton("▫️ ᴜᴘᴅᴀᴛᴇs ▫️", url="https://t.me/PURVI_UPDATES")]
-    ]
+    [InlineKeyboardButton("➕ ᴀᴅᴅ ᴍᴇ", url=f"https://t.me/{approved_bot.username}?startgroup=botstart")],
+    [InlineKeyboardButton("👑 ᴏᴡɴᴇʀ", url="tg://user?id=7473021518"),
+     InlineKeyboardButton("📢 ᴜᴘᴅᴀᴛᴇs", url="https://t.me/PURVI_UPDATES")],
+    [InlineKeyboardButton("📚 ʜᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅs", callback_data="help_back")]
+]
     photo_url = "https://files.catbox.moe/yy0ukm.jpg"
     await client.send_photo(
         chat_id=message.chat.id,
