@@ -86,7 +86,7 @@ async def removesession(client: Client, message: Message):
         if result.deleted_count:
             await safe_reply(message, "<b>🗑️ sᴇssɪᴏɴ ʀᴇᴍᴏᴠᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ.</b>")
         else:
-            await safe_reply(message, "<b🚫 ʏᴏᴜ ᴅɪᴅɴ'ᴛ ᴀᴅᴅ ᴀɴʏ sᴇssɪᴏɴ, ᴘʟᴇᴀsᴇ ᴀᴅᴅ ғɪʀsᴛ.</b>")
+            await safe_reply(message, "<b>🚫 ʏᴏᴜ ᴅɪᴅɴ'ᴛ ᴀᴅᴅ ᴀɴʏ sᴇssɪᴏɴ, ᴘʟᴇᴀsᴇ ᴀᴅᴅ ғɪʀsᴛ.</b>")
 
     except Exception as e:
         await safe_reply(
