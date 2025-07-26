@@ -38,19 +38,19 @@ async def start(client: Client, message: Message):
     approved_bot = await client.get_me()
     buttons = [
         [InlineKeyboardButton("➕ ᴀᴅᴅ ᴍᴇ", url=f"https://t.me/{approved_bot.username}?startgroup=botstart")],
-        [InlineKeyboardButton("👑 ᴏᴡɴᴇʀ", user_id=7473021518),
-         InlineKeyboardButton("📢 ᴜᴘᴅᴀᴛᴇs", url="https://t.me/PURVI_UPDATES")],
-        [InlineKeyboardButton("📚 ʜᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅs", callback_data="help")]
+        [InlineKeyboardButton("ᴏᴡɴᴇʀ", user_id=7473021518),
+         InlineKeyboardButton("ᴜᴘᴅᴀᴛᴇs", url="https://t.me/PURVI_UPDATES")],
+        [InlineKeyboardButton("ʜᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅs", callback_data="help")]
     ]
     photo_url = "https://files.catbox.moe/yy0ukm.jpg"
     await client.send_photo(
         chat_id=message.chat.id,
         photo=photo_url,
         caption=(
-            f"<b>✦ » ʜᴇʏ {query.from_user.mention}!</b>\n\n"
-        f"<b>✦ » ɪ ᴀᴍ ᴛᴇʟᴇɢʀᴀᴍ ʀᴇǫᴜᴇsᴛ ᴀᴘᴘʀᴏᴠᴇʀ ʙᴏᴛ ғᴏʀ ɢʀᴏᴜᴘ ᴄʜᴀɴɴᴇʟ.</b>\n\n"
-        f"<b>✦ » ɪ ᴄᴀɴ ᴀᴄᴄᴇᴘᴛ ɴᴇᴡ ʀᴇǫᴜᴇsᴛ ᴀɴᴅ ᴘᴇɴᴅɪɴɢ ʀᴇǫᴜᴇsᴛs. ᴛᴀᴘ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ᴛᴏ sᴇᴇ ᴄᴏᴍᴍᴀɴᴅs & ʜᴇʟᴘ.</b>\n\n"
-        f"<b>✦ » 𝐏ᴏᴡᴇʀᴇᴅ 𝐁ʏ » <a href='https://t.me/TheSigmaCoder'>⎯᪵፝֟፝֟⎯꯭𓆩꯭ 𝐀 ꯭ʟ ꯭ᴘ ꯭ʜ꯭ ᴧ꯭⎯꯭꯭‌꯭🥂꯭༎꯭ 𓆪</a></b>",
+            f"<b>✦ » ʜᴇʏ {message.from_user.mention}!</b>\n\n"
+            f"<b>✦ » ɪ ᴀᴍ ᴛᴇʟᴇɢʀᴀᴍ ʀᴇǫᴜᴇsᴛ ᴀᴘᴘʀᴏᴠᴇʀ ʙᴏᴛ ғᴏʀ ɢʀᴏᴜᴘ ᴄʜᴀɴɴᴇʟ.</b>\n\n"
+            f"<b>✦ » ɪ ᴄᴀɴ ᴀᴄᴄᴇᴘᴛ ɴᴇᴡ ʀᴇǫᴜᴇsᴛ ᴀɴᴅ ᴘᴇɴᴅɪɴɢ ʀᴇǫᴜᴇsᴛs. ᴛᴀᴘ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ᴛᴏ sᴇᴇ ᴄᴏᴍᴍᴀɴᴅs & ʜᴇʟᴘ.</b>\n\n"
+            f"<b>✦ » 𝐏ᴏᴡᴇʀᴇᴅ 𝐁ʏ » <a href='https://t.me/TheSigmaCoder'>⎯᪵፝֟፝֟⎯꯭𓆩꯭ 𝐀 ꯭ʟ ꯭ᴘ ꯭ʜ꯭ ᴧ꯭⎯꯭꯭‌꯭🥂꯭༎꯭ 𓆪</a></b>",
         reply_markup=InlineKeyboardMarkup(buttons)  
     )
 
@@ -142,7 +142,8 @@ async def autoapprove(client: Client, message: ChatJoinRequest):
 async def help_callback(_, query):
     await query.message.edit_caption(
         caption=(
-            "<b>ʜᴇʀᴇ ᴍʏ ʜᴇʟᴘ ꜰᴜɴᴄᴛɪᴏɴs</b>\n\n"
+            "<b><u>⊚ ʜᴇʀᴇ ᴍʏ ʜᴇʟᴘ ꜰᴜɴᴄᴛɪᴏɴs.</u></b>\n\n"
+            "<b><u>✦ ᴀᴜᴛᴏ ʀᴇǫᴜᴇsᴛ ᴀᴘᴘʀᴏᴠᴇ :-</u> </b>\n\n"
             "<b>/start</b> — sᴛᴀʀᴛ ʙᴏᴛ\n"
             "<b>/newsession</b> — ᴀᴅᴅ sᴇssɪᴏɴ\n"
             "<b>/removesession</b> — ʀᴇᴍᴏᴠᴇ sᴇssɪᴏɴ\n"
