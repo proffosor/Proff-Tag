@@ -46,7 +46,7 @@ async def start(client: Client, message: Message):
     await client.send_photo(
         chat_id=message.chat.id,
         photo=photo_url,
-        caption=f"<b>✦ » ʜᴇʏ {message.from_user.mention}!</b>\n<b>✦ » ɪ ᴀᴍ ᴛᴇʟᴇɢʀᴀᴍ ʀᴇǫᴜᴇsᴛ ᴀᴘᴘʀᴏᴠᴇʀ ʙᴏᴛ ғᴏʀ ɢʀᴏᴜᴘ ᴄʜᴀɴɴᴇʟ.</b>\n\n<b>ɪ ᴄᴀɴ ᴀᴄᴄᴇᴘᴄᴛ ɴᴇᴡ ʀᴇǫᴜᴇsᴛ ᴀɴᴅ ᴘᴇɴᴅɪɴɢ ʀᴇǫᴜᴇsᴛ. ᴛᴀᴘ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ᴀɴᴅ sᴇᴇ ʜᴇʟᴘs ᴀɴᴅ ᴄᴏᴍᴍᴀɴᴅs.</b>",
+        caption=f"<b>✦ » ʜᴇʏ {message.from_user.mention}!</b>\n<b>✦ » ɪ ᴀᴍ ᴛᴇʟᴇɢʀᴀᴍ ʀᴇǫᴜᴇsᴛ ᴀᴘᴘʀᴏᴠᴇʀ ʙᴏᴛ ғᴏʀ ɢʀᴏᴜᴘ ᴄʜᴀɴɴᴇʟ.</b>\n\n<b>✦ » ɪ ᴄᴀɴ ᴀᴄᴄᴇᴘᴄᴛ ɴᴇᴡ ʀᴇǫᴜᴇsᴛ ᴀɴᴅ ᴘᴇɴᴅɪɴɢ ʀᴇǫᴜᴇsᴛ. ᴛᴀᴘ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ᴀɴᴅ sᴇᴇ ʜᴇʟᴘs ᴀɴᴅ ᴄᴏᴍᴍᴀɴᴅs.</b>\n\n<b>✦ » 𝐏ᴏᴡᴇʀᴇᴅ 𝖡ʏ » <a href='https://t.me/TheSigmaCoder'>⎯᪵፝֟፝֟⎯꯭𓆩꯭ 𝐀 ꯭ʟ ꯭ᴘ ꯭ʜ꯭ ᴧ꯭⎯꯭꯭‌꯭🥂꯭༎꯭ 𓆪</a></b>",
         reply_markup=InlineKeyboardMarkup(buttons)
     )
 
@@ -164,14 +164,15 @@ async def close_callback(client, callback_query):
 
 @app.on_callback_query(filters.regex("start_back"))
 async def start_back_callback(_, query: CallbackQuery):
+    bot_username = (await app.get_me()).username
     await query.message.edit_text(
         f"<b>✦ » ʜᴇʏ {query.from_user.mention}!</b>\n"
         f"<b>✦ » ɪ ᴀᴍ ᴛᴇʟᴇɢʀᴀᴍ ʀᴇǫᴜᴇsᴛ ᴀᴘᴘʀᴏᴠᴇʀ ʙᴏᴛ ғᴏʀ ɢʀᴏᴜᴘ ᴄʜᴀɴɴᴇʟ.</b>\n\n"
         f"<b>ɪ ᴄᴀɴ ᴀᴄᴄᴇᴘᴛ ɴᴇᴡ ʀᴇǫᴜᴇsᴛ ᴀɴᴅ ᴘᴇɴᴅɪɴɢ ʀᴇǫᴜᴇsᴛ. ᴛᴀᴘ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ᴀɴᴅ sᴇᴇ ʜᴇʟᴘs ᴀɴᴅ ᴄᴏᴍᴍᴀɴᴅs.</b>\n\n"
-        f"<b>✦ » 𝐏ᴏᴡᴇʀᴇᴅ 𝖡ʏ » ⎯᪵፝֟፝֟⎯꯭𓆩꯭ <a href='https://t.me/TheSigmaCoder'>𝐀 ꯭ʟ ꯭ᴘ ꯭ʜ꯭ ᴧ꯭</a>⎯꯭꯭‌꯭🥂꯭༎꯭ 𓆪</b>",
+        f"<b>✦ » 𝐏ᴏᴡᴇʀᴇᴅ 𝖡ʏ » <a href='https://t.me/TheSigmaCoder'>⎯᪵፝֟፝֟⎯꯭𓆩꯭ 𝐀 ꯭ʟ ꯭ᴘ ꯭ʜ꯭ ᴧ꯭⎯꯭꯭‌꯭🥂꯭༎꯭ 𓆪</a></b>"
         reply_markup=InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("➕ ᴀᴅᴅ ᴍᴇ", url=f"https://t.me/{approved_bot.username}?startgroup=botstart")],
+                [InlineKeyboardButton("➕ ᴀᴅᴅ ᴍᴇ", url=f"https://t.me/{bot_username}?startgroup=botstart")],
                 [InlineKeyboardButton("👑 ᴏᴡɴᴇʀ", url="tg://user?id=7473021518"),
                  InlineKeyboardButton("📢 ᴜᴘᴅᴀᴛᴇs", url="https://t.me/PURVI_UPDATES")],
                 [InlineKeyboardButton("📚 ʜᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅs", callback_data="help")]
