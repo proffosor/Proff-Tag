@@ -53,7 +53,7 @@ async def start(client: Client, message: Message):
 @app.on_message(filters.private & filters.command("newsession"))
 async def newsession(client: Client, message: Message):
     if len(message.command) < 2:
-        await safe_reply(message, "<b>⚠️ sᴇɴᴅ ʏᴏᴜʀ ᴘʏʀᴏɢʀᴀᴍ sᴇssɪᴏɴ ʟɪᴋᴇ</b> <code>/newsession &lt;your_string_session&gt;</code>\n\n<b>ʏᴏᴜ ʜᴀᴠᴇ ɴᴏᴛ sᴇssɪᴏɴ ɢᴏ @StringFatherRobot ᴀɴᴅ ɢᴇɴ sᴇssɪᴏɴ.</b>")
+        await safe_reply(message, "<b>⚠️ sᴇɴᴅ ʏᴏᴜʀ ᴘʏʀᴏɢʀᴀᴍ sᴇssɪᴏɴ ʟɪᴋᴇ</b> <code>/newsession &lt;your_string_session&gt;</code>")
         return
     
     string = message.text.split(" ", 1)[1]
@@ -80,7 +80,7 @@ async def removesession(client: Client, message: Message):
 @app.on_message(filters.private & filters.command("allapprove"))
 async def allapprove(client: Client, message: Message):
     if len(message.command) < 2:
-        await safe_reply(message, "<b>❗ ᴜsᴀɢᴇ :</b> <code>/allapprove &lt;channel/group id&gt;</code>\n\n<b>ғᴏʀᴡᴀʀᴅ @Purvi_Help_Bot ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ ᴍᴇss ᴀɴᴅ ɢᴇᴛ ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ/ɢʀᴏᴜᴘ ɪᴅ ʜᴇʀᴇ.</b>")
+        await safe_reply(message, "<b>❗ ᴜsᴀɢᴇ :</b> <code>/allapprove &lt;channel/group id&gt;</code>")
         return
 
     session_data = session_col.find_one({"_id": "session"})
