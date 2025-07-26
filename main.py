@@ -47,12 +47,10 @@ async def start(client: Client, message: Message):
         chat_id=message.chat.id,
         photo=photo_url,
         caption=(
-            f"<b>✦ » ʜᴇʏ {message.from_user.mention} !!</b>\n\n"
-            "<b>✦ » ɪ ᴀᴍ ᴀɴ ᴀᴜᴛᴏ ʀᴇǫᴜᴇsᴛ ᴀᴘᴘʀᴏᴠᴇʀ ʙᴏᴛ ғᴏʀ ᴛᴇʟᴇɢʀᴀᴍ ɢʀᴏᴜᴘs ᴀɴᴅ ᴄʜᴀɴɴᴇʟs.</b>\n"
-            "<b>✦ » ɪ ᴄᴀɴ ᴀᴜᴛᴏ-ᴀᴄᴄᴇᴘᴛ ɴᴇᴡ ʀᴇǫᴜᴇsᴛs ᴀɴᴅ ᴍᴀɴᴀɢᴇ ᴘᴇɴᴅɪɴɢ ʀᴇǫᴜᴇsᴛs.</b>\n"
-            "<b>✦ » ᴛᴀᴘ ᴛʜᴇ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ᴛᴏ sᴇᴇ ᴄᴏᴍᴍᴀɴᴅs & sᴇᴛᴛɪɴɢs.</b>\n\n"
-            "<b>✦ » 𝐏ᴏᴡᴇʀᴇᴅ 𝐁ʏ » <a href='https://t.me/TheSigmaCoder'>⎯᪵፝֟፝֟⎯꯭𓆩꯭ 𝐀 ꯭ʟ ꯭ᴘ ꯭ʜ꯭ ᴧ꯭⎯꯭꯭‌꯭🥂꯭༎꯭ 𓆪</a></b>"
-        ),
+            f"<b>✦ » ʜᴇʏ {query.from_user.mention}!</b>\n\n"
+        f"<b>✦ » ɪ ᴀᴍ ᴛᴇʟᴇɢʀᴀᴍ ʀᴇǫᴜᴇsᴛ ᴀᴘᴘʀᴏᴠᴇʀ ʙᴏᴛ ғᴏʀ ɢʀᴏᴜᴘ ᴄʜᴀɴɴᴇʟ.</b>\n\n"
+        f"<b>✦ » ɪ ᴄᴀɴ ᴀᴄᴄᴇᴘᴛ ɴᴇᴡ ʀᴇǫᴜᴇsᴛ ᴀɴᴅ ᴘᴇɴᴅɪɴɢ ʀᴇǫᴜᴇsᴛs. ᴛᴀᴘ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ᴛᴏ sᴇᴇ ᴄᴏᴍᴍᴀɴᴅs & ʜᴇʟᴘ.</b>\n\n"
+        f"<b>✦ » 𝐏ᴏᴡᴇʀᴇᴅ 𝐁ʏ » <a href='https://t.me/TheSigmaCoder'>⎯᪵፝֟፝֟⎯꯭𓆩꯭ 𝐀 ꯭ʟ ꯭ᴘ ꯭ʜ꯭ ᴧ꯭⎯꯭꯭‌꯭🥂꯭༎꯭ 𓆪</a></b>",
         reply_markup=InlineKeyboardMarkup(buttons)  
     )
 
