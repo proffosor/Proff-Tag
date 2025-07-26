@@ -37,10 +37,10 @@ async def safe_reply(message, text, **kwargs):
 async def start(client: Client, message: Message):
     approved_bot = await client.get_me()
     buttons = [
-        [InlineKeyboardButton("➕ ᴀᴅᴅ ᴍᴇ", url=f"https://t.me/{approved_bot.username}?startgroup=botstart")],
-        [InlineKeyboardButton("ᴏᴡɴᴇʀ", user_id=7473021518),
-         InlineKeyboardButton("ᴜᴘᴅᴀᴛᴇs", url="https://t.me/PURVI_UPDATES")],
-        [InlineKeyboardButton("ʜᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅs", callback_data="help")]
+        [InlineKeyboardButton("⚜️ ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ ⚜️", url=f"https://t.me/{approved_bot.username}?startgroup=botstart")],
+        [InlineKeyboardButton("🔸 ᴏᴡɴᴇʀ 🔸", user_id=7473021518),
+         InlineKeyboardButton("🔅 ᴜᴘᴅᴀᴛᴇs 🔅", url="https://t.me/PURVI_UPDATES")],
+        [InlineKeyboardButton("🔺 ʜᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅs 🔺", callback_data="help")]
     ]
     photo_url = "https://files.catbox.moe/yy0ukm.jpg"
     await client.send_photo(
@@ -155,8 +155,8 @@ async def help_callback(_, query):
             "<b>:⧽ sᴛʀɪɴɢ sᴇssɪᴏɴ :- ɢᴏ ᴛᴏ @StringFatherRobot ᴀɴᴅ ɢᴇɴᴇʀᴀᴛᴇ ʏᴏᴜʀ ᴘʏʀᴏɢʀᴀᴍ sᴇssɪᴏɴ.</b>"
         ),
         reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton("ʙᴀᴄᴋ", callback_data="start_back"),
-            InlineKeyboardButton("ᴄʟᴏsᴇ", callback_data="close")]
+            [InlineKeyboardButton("🔸 ʙᴀᴄᴋ 🔸", callback_data="start_back"),
+            InlineKeyboardButton("🔸 ᴄʟᴏsᴇ 🔸", callback_data="close")]
         ]),
         parse_mode=enums.ParseMode.HTML
     )
@@ -179,10 +179,10 @@ async def start_back_callback(_, query: CallbackQuery):
         f"<b>✦ » 𝐏ᴏᴡᴇʀᴇᴅ 𝐁ʏ » <a href='https://t.me/TheSigmaCoder'>⎯᪵፝֟፝֟⎯꯭𓆩꯭ 𝐀 ꯭ʟ ꯭ᴘ ꯭ʜ꯭ ᴧ꯭⎯꯭꯭‌꯭🥂꯭༎꯭ 𓆪</a></b>",
         reply_markup=InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("➕ ᴀᴅᴅ ᴍᴇ", url=f"https://t.me/{bot_username}?startgroup=botstart")],
-                [InlineKeyboardButton("👑 ᴏᴡɴᴇʀ", user_id=7473021518),
-                 InlineKeyboardButton("📢 ᴜᴘᴅᴀᴛᴇs", url="https://t.me/PURVI_UPDATES")],
-                [InlineKeyboardButton("📚 ʜᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅs", callback_data="help")]
+                [InlineKeyboardButton("⚜️ ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ ⚜️", url=f"https://t.me/{bot_username}?startgroup=botstart")],
+                [InlineKeyboardButton("🔸 ᴏᴡɴᴇʀ 🔸", user_id=7473021518),
+                 InlineKeyboardButton("🔅 ᴜᴘᴅᴀᴛᴇs 🔅", url="https://t.me/PURVI_UPDATES")],
+                [InlineKeyboardButton("🔺 ʜᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅs 🔺", callback_data="help")]
             ]
         )
     )
