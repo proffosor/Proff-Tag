@@ -2,6 +2,7 @@ from pyrogram import Client, filters, enums
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, ChatJoinRequest
 from pyrogram.errors import ChatAdminRequired, FloodWait, PeerIdInvalid
 from pymongo import MongoClient
+from pyrogram.types import CallbackQuery
 import asyncio
 from os import getenv
 
@@ -131,9 +132,6 @@ async def autoapprove(client: Client, message: ChatJoinRequest):
         f"<b>✦ » ʜᴇʟʟᴏ {user.mention} ʏᴏᴜ ᴀʀᴇ ɴᴏᴡ ᴀᴜᴛᴏ ᴀᴘᴘʀᴏᴠᴇᴅ ᴀ ᴄʜᴀᴛ : {chat.title}</b>\n\n<b>ᴠɪsɪᴛ » @PURVI_BOTS</b>"
     )
 
-
-from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 @app.on_callback_query(filters.regex("help"))
 async def help_callback(_, query):
