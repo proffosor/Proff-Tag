@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, ChatJoinRequest
 from pyrogram.errors import ChatAdminRequired, FloodWait, PeerIdInvalid
-from pyrogram.session.string_session import StringSession
+from pyrogram.session import StringSession
 from pymongo import MongoClient
 import asyncio
 from os import getenv
