@@ -4,12 +4,14 @@ from pyrogram.errors import ChatAdminRequired, FloodWait, PeerIdInvalid
 from pyrogram.sessions import StringSession
 from pymongo import MongoClient
 import asyncio
+from os import getenv
 
-# ====== Bot Config ======
-api_id = 10079905
-api_hash = "e4a5fa251e2e055f26e5c2add8401530"
-bot_token = "7549973847:AAEAhvUW8X0IEamKdFw0NtXwvFkJ57IJ7zA"
-mongo_url = "mongodb://localhost:27017/"  # Replace with your MongoDB URI
+# ====== Bot Config =====
+API_ID = int(getenv("API_ID", "24168862"))
+API_HASH = getenv("API_HASH", "916a9424dd1e58ab7955001ccc0172b3")
+
+BOT_TOKEN = getenv("BOT_TOKEN", "7635729732:AAG6QShFz20CmQgzcoRSDURw-RV9kDCWdEQ")
+MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://CHATBOT:Purvichat@cluster0.i3u97sj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 
 # ====== Init Clients ======
 app = Client("Auto Approved Bot", bot_token=bot_token, api_id=api_id, api_hash=api_hash)
