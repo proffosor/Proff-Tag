@@ -39,7 +39,7 @@ async def start(client: Client, message: Message):
     [InlineKeyboardButton("➕ ᴀᴅᴅ ᴍᴇ", url=f"https://t.me/{approved_bot.username}?startgroup=botstart")],
     [InlineKeyboardButton("👑 ᴏᴡɴᴇʀ", url="tg://user?id=7473021518"),
      InlineKeyboardButton("📢 ᴜᴘᴅᴀᴛᴇs", url="https://t.me/PURVI_UPDATES")],
-    [InlineKeyboardButton("📚 ʜᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅs", callback_data="help_back")]
+    [InlineKeyboardButton("📚 ʜᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅs", callback_data="help")]
 ]
     photo_url = "https://files.catbox.moe/yy0ukm.jpg"
     await client.send_photo(
@@ -132,6 +132,38 @@ async def autoapprove(client: Client, message: ChatJoinRequest):
     )
 
 
+from pyrogram import Client, filters
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+
+@app.on_callback_query(filters.regex("help"))
+async def help_callback(_, query):
+    await query.message.edit_caption(
+        caption=(
+            "<b>ʜᴇʀᴇ ᴍʏ ʜᴇʟᴘ ꜰᴜɴᴄᴛɪᴏɴs</b>\n\n"
+            "<b>/start</b> — sᴛᴀʀᴛ ʙᴏᴛ\n"
+            "<b>/newsession</b> — ᴀᴅᴅ sᴇssɪᴏɴ\n"
+            "<b>/removesession</b> — ʀᴇᴍᴏᴠᴇ sᴇssɪᴏɴ\n"
+            "<b>/allapprove</b> — ᴀᴘᴘʀᴏᴠᴇ ᴊᴏɪɴ ʀᴇQᴜᴇsᴛs\n\n"
+            "<b>ʜᴏᴡ ᴛᴏ ɢᴇᴛ ᴄʜᴀɴɴᴇʟ, ɢʀᴏᴜᴘ ɪᴅ ᴀɴᴅ sᴇssɪᴏɴ?</b>\n\n"
+            "<b>Channel ID</b> :- ғᴏʀᴡᴀʀᴅ @Purvi_Help_Bot ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ ᴍᴇssᴀɢᴇ ᴀɴᴅ ɢᴇᴛ ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ ɪᴅ.\n"
+            "<b>Group ID</b> :- ᴀᴅᴅ @MissRose_bot ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴀɴᴅ ᴛʏᴘᴇ <code>/id</code>\n"
+            "<b>String session</b> :- ɢᴏ ᴛᴏ @StringFatherRobot ᴀɴᴅ ɢᴇɴᴇʀᴀᴛᴇ ʏᴏᴜʀ sᴇssɪᴏɴ."
+        ),
+        reply_markup=InlineKeyboardMarkup([
+            [InlineKeyboardButton("« ʙᴀᴄᴋ", callback_data="start_back")],
+            [InlineKeyboardButton("✘ ᴄʟᴏsᴇ", callback_data="close")]
+        ]),
+        parse_mode=enums.ParseMode.HTML
+    )
+
+@app.on_callback_query(filters.regex("close"))
+async def close_callback(client, callback_query):
+    try:
+        await callback_query.message.delete()
+    except:
+        pass
+    await callback_query.answer()
+
 @app.on_callback_query(filters.regex("start_back"))
 async def start_back_callback(_, query: CallbackQuery):
     await query.message.edit_text(
@@ -144,7 +176,7 @@ async def start_back_callback(_, query: CallbackQuery):
                 [InlineKeyboardButton("➕ ᴀᴅᴅ ᴍᴇ", url=f"https://t.me/{approved_bot.username}?startgroup=botstart")],
                 [InlineKeyboardButton("👑 ᴏᴡɴᴇʀ", url="tg://user?id=7473021518"),
                  InlineKeyboardButton("📢 ᴜᴘᴅᴀᴛᴇs", url="https://t.me/PURVI_UPDATES")],
-                [InlineKeyboardButton("📚 ʜᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅs", callback_data="help_back")]
+                [InlineKeyboardButton("📚 ʜᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅs", callback_data="help")]
             ]
         ),
     )
