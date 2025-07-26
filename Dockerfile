@@ -1,4 +1,4 @@
-FROM nikolaik/python-nodejs:python3.9-nodejs18
+FROM nikolaik/python-nodejs:python3.11.4-nodejs18
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends ffmpeg \
