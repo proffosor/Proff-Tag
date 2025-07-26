@@ -44,14 +44,14 @@ async def start(client: Client, message: Message):
     await client.send_photo(
         chat_id=message.chat.id,
         photo=photo_url,
-        caption=f"<b>✦ » ʜᴇʏ {message.from_user.mention}!</b>\n<b>✦ » ɪ ᴀᴍ ᴀᴜᴛᴏ ᴀᴘᴘʀᴏᴠᴇ ʙᴏᴛ.</b>\n\nUse <code>/newsession &lt;session_string&gt;</code> to set your session.",
+        caption=f"<b>✦ » ʜᴇʏ {message.from_user.mention}!</b>\n<b>✦ » ɪ ᴀᴍ ᴛᴇʟᴇɢʀᴀᴍ ʀᴇǫᴜᴇsᴛ ᴀᴘᴘʀᴏᴠᴇʀ ʙᴏᴛ ғᴏʀ ɢʀᴏᴜᴘ ᴄʜᴀɴɴᴇʟ.</b>\n\n<b>ɪ ᴄᴀɴ ᴀᴄᴄᴇᴘᴄᴛ ɴᴇᴡ ʀᴇǫᴜᴇsᴛ ᴀɴᴅ ᴘᴇɴᴅɪɴɢ ʀᴇǫᴜᴇsᴛ. ᴛᴀᴘ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ᴀɴᴅ sᴇᴇ ʜᴇʟᴘs ᴀɴᴅ ᴄᴏᴍᴍᴀɴᴅs.</b>",
         reply_markup=InlineKeyboardMarkup(buttons)
     )
 
 @app.on_message(filters.private & filters.command("newsession"))
 async def newsession(client: Client, message: Message):
     if len(message.command) < 2:
-        await safe_reply(message, "⚠️ Send your Pyrogram session like: <code>/newsession &lt;your_string_session&gt;</code>")
+        await safe_reply(message, "⚠️ sᴇɴᴅ ʏᴏᴜʀ ᴘʏʀᴏɢʀᴀᴍ sᴇssɪᴏɴ ʟɪᴋᴇ <code>/newsession &lt;your_string_session&gt;</code>\n\nʏᴏᴜ ʜᴀᴠᴇ ɴᴏᴛ sᴇssɪᴏɴ ɢᴏ @StringFatherRobot ᴀɴᴅ ɢᴇɴ sᴇssɪᴏɴ.")
         return
     
     string = message.text.split(" ", 1)[1]
@@ -63,27 +63,27 @@ async def newsession(client: Client, message: Message):
                 {"_id": "session", "string": string, "user_id": user.id}, 
                 upsert=True
             )
-            await safe_reply(message, f"✅ Session set successfully for user: <code>{user.first_name}</code>")
+            await safe_reply(message, f"✅ sᴇssɪᴏɴ ᴀᴅᴅ sᴜᴄᴄᴇssғᴜʟʟʏ : <code>{user.first_name}</code>")
     except Exception as e:
-        await safe_reply(message, f"❌ Invalid session: {str(e)}")
+        await safe_reply(message, f"❌ ɪɴᴠᴀʟɪᴅ sᴇssɪᴏɴ : {str(e)}")
 
 @app.on_message(filters.private & filters.command("removesession"))
 async def removesession(client: Client, message: Message):
     result = session_col.delete_one({"_id": "session"})
     if result.deleted_count:
-        await safe_reply(message, "🗑️ Session removed successfully.")
+        await safe_reply(message, "🗑️ sᴇssɪᴏɴ ʀᴇᴍᴏᴠᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ.")
     else:
-        await safe_reply(message, "⚠️ No session found.")
+        await safe_reply(message, "⚠️ ɴᴏ sᴇssɪᴏɴ ғᴏᴜɴᴅ.")
 
 @app.on_message(filters.private & filters.command("allapprove"))
 async def allapprove(client: Client, message: Message):
     if len(message.command) < 2:
-        await safe_reply(message, "❗ Usage: <code>/allapprove &lt;chat_id&gt;</code>")
+        await safe_reply(message, "❗ ᴜsᴀɢᴇ : <code>/allapprove &lt;channel/group id&gt;</code>\n\nғᴏʀᴡᴀʀᴅ @Purvi_Help_Bot ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ ᴍᴇss ᴀɴᴅ ɢᴇᴛ ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ/ɢʀᴏᴜᴘ ɪᴅ ʜᴇʀᴇ.")
         return
 
     session_data = session_col.find_one({"_id": "session"})
     if not session_data:
-        await safe_reply(message, "❌ No session found. Use <code>/newsession &lt;session_string&gt;</code> to add one.")
+        await safe_reply(message, "❌ ɴᴏ sᴇssɪᴏɴ ғᴏᴜɴᴅ. ᴜsᴇ <code>/newsession &lt;session_string&gt;</code> ᴛᴏ ᴀᴅᴅ ᴏɴᴇ.")
         return
 
     chat_id = message.command[1]
@@ -104,21 +104,21 @@ async def allapprove(client: Client, message: Message):
                 except Exception as err:
                     print(f"Failed to approve {req.user.id}: {err}")
 
-            await safe_reply(message, f"✅ Approved {approved} join requests in <code>{chat_id}</code>")
+            await safe_reply(message, f"✅ ᴀᴘᴘʀᴏᴠᴇᴅ {approved} ᴘᴇɴᴅɪɴɢ ᴊᴏɪɴ ʀᴇǫᴜᴇsᴛs ɪɴ <code>{chat_id}</code>")
     except ChatAdminRequired:
-        await safe_reply(message, "❌ Error: The user session is not admin in the chat.")
+        await safe_reply(message, "❌ ᴇʀʀᴏʀ : ᴛʜᴇ ᴜsᴇʀ ɴᴏᴛ ᴀᴅᴍɪɴ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ/ᴄʜᴀɴɴᴇʟ.")
     except PeerIdInvalid:
-        await safe_reply(message, "❌ Error: Invalid Chat ID.")
+        await safe_reply(message, "❌ ᴇʀʀᴏʀ : ɪɴᴠᴀʟɪᴅ ᴄʜᴀɴɴᴇʟ/ɢʀᴏᴜᴘ ɪᴅ.")
     except Exception as e:
-        await safe_reply(message, f"❌ Error occurred: {str(e)}")
+        await safe_reply(message, f"❌ ᴇʀʀᴏʀ ᴏᴄᴄᴏᴜʀᴅ : {str(e)}")
 
 @app.on_chat_join_request(filters.group | filters.channel)
 async def autoapprove(client: Client, message: ChatJoinRequest):
     chat = message.chat
-    user_id = message.from_user.id if message.from_user else message.user.id  # Fallback
+    user_id = message.from_user.id if message.from_user else message.user.id  
     user = await client.get_users(user_id)
 
-    print(f"{user.first_name} Approved 👍")
+    print(f"{user.first_name} ᴀᴘᴘʀᴏᴠᴇᴅ 👍")
     
     await client.approve_chat_join_request(chat_id=chat.id, user_id=user.id)
 
