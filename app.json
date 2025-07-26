@@ -1,0 +1,39 @@
+{
+    "name": "𝙿𝚄𝚁𝚅𝙸 𝙼𝚄𝚂𝙸𝙲",
+    "description": "A Telegram Auto request approve Bot, written in Python with Pyrogram and Py-Tgcalls.",
+    "logo": "https://graph.org/file/bbae2c50b58056ecc4df7.jpg",
+    "keywords": [
+    "tgcrypto",
+    "telegram",
+    "pyrogram"
+    ],
+    "env": {
+      "API_ID": {
+        "description": "Get this value from https://my.telegram.org",
+        "value": "",
+        "required": true
+      },
+      "API_HASH": {
+        "description": "Get this value from https://my.telegram.org",
+        "value": "",
+        "required": true
+      },
+      "BOT_TOKEN": {
+        "description": "A Bot's token from Botfather",
+        "value": "",
+        "required": true
+      }
+    },
+    "buildpacks": [
+          {
+              "url": "heroku/python"
+          },
+          {
+              "url": "heroku/nodejs"
+          },
+          {
+              "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
+          }
+      ],
+      "stack": "container"
+}
