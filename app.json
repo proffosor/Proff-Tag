@@ -1,44 +1,36 @@
 {
-  "name": "Request Approver",
-  "description": "A Telegram Auto Request Approve Bot, written in Python using Pyrogram.",
-  "logo": "https://graph.org/file/bbae2c50b58056ecc4df7.jpg",
-  "keywords": [
-    "tgcrypto",
-    "telegram",
-    "pyrogram"
-  ],
+  "name": "Auto Approve Bot",
+  "description": "Telegram Auto Approve Chat Join Requests Bot",
+  "repository": "https://github.com/Im-NotCoder/Auto-Approve",
+  "logo": "https://files.catbox.moe/yy0ukm.jpg",
+  "keywords": ["pyrogram", "telegram", "bot"],
   "env": {
     "API_ID": {
-      "description": "Get this value from https://my.telegram.org",
-      "value": "24168862",
+      "description": "Get from my.telegram.org",
       "required": true
     },
     "API_HASH": {
-      "description": "Get this value from https://my.telegram.org",
-      "value": "916a9424dd1e58ab7955001ccc0172b3",
+      "description": "Get from my.telegram.org",
       "required": true
     },
     "BOT_TOKEN": {
-      "description": "A bot token from BotFather",
-      "value": "7635729732:AAG6QShFz20CmQgzcoRSDURw-RV9kDCWdEQ",
+      "description": "Get from @BotFather",
       "required": true
     },
     "MONGO_DB_URI": {
-      "description": "MongoDB connection URI string",
-      "value": "mongodb+srv://CHATBOT:Purvichat@cluster0.i3u97sj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+      "description": "MongoDB Atlas URI",
       "required": true
+    }
+  },
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "basic" 
     }
   },
   "buildpacks": [
     {
       "url": "heroku/python"
-    },
-    {
-      "url": "heroku/nodejs"
-    },
-    {
-      "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
     }
-  ],
-  "stack": "container"
+  ]
 }
