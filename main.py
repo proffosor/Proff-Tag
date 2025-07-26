@@ -51,7 +51,7 @@ async def start(client: Client, message: Message):
 @app.on_message(filters.private & filters.command("newsession"))
 async def newsession(client: Client, message: Message):
     if len(message.command) < 2:
-        await safe_reply(message, "⚠️ sᴇɴᴅ ʏᴏᴜʀ ᴘʏʀᴏɢʀᴀᴍ sᴇssɪᴏɴ ʟɪᴋᴇ <code>/newsession &lt;your_string_session&gt;</code>\n\nʏᴏᴜ ʜᴀᴠᴇ ɴᴏᴛ sᴇssɪᴏɴ ɢᴏ @StringFatherRobot ᴀɴᴅ ɢᴇɴ sᴇssɪᴏɴ.")
+        await safe_reply(message, "<b>⚠️ sᴇɴᴅ ʏᴏᴜʀ ᴘʏʀᴏɢʀᴀᴍ sᴇssɪᴏɴ ʟɪᴋᴇ</b> <code>/newsession &lt;your_string_session&gt;</code>\n\n<b>ʏᴏᴜ ʜᴀᴠᴇ ɴᴏᴛ sᴇssɪᴏɴ ɢᴏ @StringFatherRobot ᴀɴᴅ ɢᴇɴ sᴇssɪᴏɴ.</b>")
         return
     
     string = message.text.split(" ", 1)[1]
@@ -63,27 +63,27 @@ async def newsession(client: Client, message: Message):
                 {"_id": "session", "string": string, "user_id": user.id}, 
                 upsert=True
             )
-            await safe_reply(message, f"✅ sᴇssɪᴏɴ ᴀᴅᴅ sᴜᴄᴄᴇssғᴜʟʟʏ : <code>{user.first_name}</code>")
+            await safe_reply(message, f"<b>✅ sᴇssɪᴏɴ ᴀᴅᴅ sᴜᴄᴄᴇssғᴜʟʟʏ :</b> <code>{user.first_name}</code>")
     except Exception as e:
-        await safe_reply(message, f"❌ ɪɴᴠᴀʟɪᴅ sᴇssɪᴏɴ : {str(e)}")
+        await safe_reply(message, f"<b>❌ ɪɴᴠᴀʟɪᴅ sᴇssɪᴏɴ :</b> {str(e)}")
 
 @app.on_message(filters.private & filters.command("removesession"))
 async def removesession(client: Client, message: Message):
     result = session_col.delete_one({"_id": "session"})
     if result.deleted_count:
-        await safe_reply(message, "🗑️ sᴇssɪᴏɴ ʀᴇᴍᴏᴠᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ.")
+        await safe_reply(message, "<b>🗑️ sᴇssɪᴏɴ ʀᴇᴍᴏᴠᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ.</b>")
     else:
-        await safe_reply(message, "⚠️ ɴᴏ sᴇssɪᴏɴ ғᴏᴜɴᴅ.")
+        await safe_reply(message, "<b>⚠️ ɴᴏ sᴇssɪᴏɴ ғᴏᴜɴᴅ.</b>")
 
 @app.on_message(filters.private & filters.command("allapprove"))
 async def allapprove(client: Client, message: Message):
     if len(message.command) < 2:
-        await safe_reply(message, "❗ ᴜsᴀɢᴇ : <code>/allapprove &lt;channel/group id&gt;</code>\n\nғᴏʀᴡᴀʀᴅ @Purvi_Help_Bot ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ ᴍᴇss ᴀɴᴅ ɢᴇᴛ ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ/ɢʀᴏᴜᴘ ɪᴅ ʜᴇʀᴇ.")
+        await safe_reply(message, "<b>❗ ᴜsᴀɢᴇ :</b> <code>/allapprove &lt;channel/group id&gt;</code>\n\n<b>ғᴏʀᴡᴀʀᴅ @Purvi_Help_Bot ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ ᴍᴇss ᴀɴᴅ ɢᴇᴛ ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ/ɢʀᴏᴜᴘ ɪᴅ ʜᴇʀᴇ.</b>")
         return
 
     session_data = session_col.find_one({"_id": "session"})
     if not session_data:
-        await safe_reply(message, "❌ ɴᴏ sᴇssɪᴏɴ ғᴏᴜɴᴅ. ᴜsᴇ <code>/newsession &lt;session_string&gt;</code> ᴛᴏ ᴀᴅᴅ ᴏɴᴇ.")
+        await safe_reply(message, "<b>❌ ɴᴏ sᴇssɪᴏɴ ғᴏᴜɴᴅ. ᴜsᴇ</b> <code>/newsession &lt;session_string&gt;</code> <b>ᴛᴏ ᴀᴅᴅ ᴏɴᴇ.</b>")
         return
 
     chat_id = message.command[1]
@@ -104,13 +104,13 @@ async def allapprove(client: Client, message: Message):
                 except Exception as err:
                     print(f"Failed to approve {req.user.id}: {err}")
 
-            await safe_reply(message, f"✅ ᴀᴘᴘʀᴏᴠᴇᴅ {approved} ᴘᴇɴᴅɪɴɢ ᴊᴏɪɴ ʀᴇǫᴜᴇsᴛs ɪɴ <code>{chat_id}</code>")
+            await safe_reply(message, f"<b>✅ ᴀᴘᴘʀᴏᴠᴇᴅ {approved} ᴘᴇɴᴅɪɴɢ ᴊᴏɪɴ ʀᴇǫᴜᴇsᴛs ɪɴ</b> <code>{chat_id}</code>")
     except ChatAdminRequired:
-        await safe_reply(message, "❌ ᴇʀʀᴏʀ : ᴛʜᴇ ᴜsᴇʀ ɴᴏᴛ ᴀᴅᴍɪɴ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ/ᴄʜᴀɴɴᴇʟ.")
+        await safe_reply(message, "<b>❌ ᴇʀʀᴏʀ : ᴛʜᴇ ᴜsᴇʀ ɴᴏᴛ ᴀᴅᴍɪɴ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ/ᴄʜᴀɴɴᴇʟ.</b>")
     except PeerIdInvalid:
-        await safe_reply(message, "❌ ᴇʀʀᴏʀ : ɪɴᴠᴀʟɪᴅ ᴄʜᴀɴɴᴇʟ/ɢʀᴏᴜᴘ ɪᴅ.")
+        await safe_reply(message, "<b>❌ ᴇʀʀᴏʀ : ɪɴᴠᴀʟɪᴅ ᴄʜᴀɴɴᴇʟ/ɢʀᴏᴜᴘ ɪᴅ.</b>")
     except Exception as e:
-        await safe_reply(message, f"❌ ᴇʀʀᴏʀ ᴏᴄᴄᴏᴜʀᴅ : {str(e)}")
+        await safe_reply(message, f"<b>❌ ᴇʀʀᴏʀ ᴏᴄᴄᴏᴜʀᴅ :</b> {str(e)}")
 
 @app.on_chat_join_request(filters.group | filters.channel)
 async def autoapprove(client: Client, message: ChatJoinRequest):
@@ -127,7 +127,7 @@ async def autoapprove(client: Client, message: ChatJoinRequest):
     
     await client.send_message(
         user.id,
-        f"**✦ » ʜᴇʟʟᴏ {user.mention} ʏᴏᴜ ᴀʀᴇ ɴᴏᴡ ᴀᴜᴛᴏ ᴀᴘᴘʀᴏᴠᴇᴅ ᴀ ᴄʜᴀᴛ : {chat.title}**\n\n**ᴠɪsɪᴛ » @PURVI_BOTS**"
+        f"<b>✦ » ʜᴇʟʟᴏ {user.mention} ʏᴏᴜ ᴀʀᴇ ɴᴏᴡ ᴀᴜᴛᴏ ᴀᴘᴘʀᴏᴠᴇᴅ ᴀ ᴄʜᴀᴛ : {chat.title}</b>\n\n<b>ᴠɪsɪᴛ » @PURVI_BOTS</b>"
     )
 
 if __name__ == "__main__":
