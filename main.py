@@ -18,7 +18,7 @@ app = Client(
     bot_token=BOT_TOKEN,
     api_id=API_ID,
     api_hash=API_HASH,
-    parse_mode=enums.ParseMode.HTML  # Default parse mode
+    parse_mode=enums.ParseMode.HTML  
 )
 mongo = MongoClient(MONGO_DB_URI)
 db = mongo.autoapprove
@@ -37,18 +37,25 @@ async def safe_reply(message, text, **kwargs):
 async def start(client: Client, message: Message):
     approved_bot = await client.get_me()
     buttons = [
-    [InlineKeyboardButton("➕ ᴀᴅᴅ ᴍᴇ", url=f"https://t.me/{approved_bot.username}?startgroup=botstart")],
-    [InlineKeyboardButton("👑 ᴏᴡɴᴇʀ", url="tg://user?id=7473021518"),
-     InlineKeyboardButton("📢 ᴜᴘᴅᴀᴛᴇs", url="https://t.me/PURVI_UPDATES")],
-    [InlineKeyboardButton("📚 ʜᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅs", callback_data="help")]
-]
+        [InlineKeyboardButton("➕ ᴀᴅᴅ ᴍᴇ", url=f"https://t.me/{approved_bot.username}?startgroup=botstart")],
+        [InlineKeyboardButton("👑 ᴏᴡɴᴇʀ", user_id=7473021518),
+         InlineKeyboardButton("📢 ᴜᴘᴅᴀᴛᴇs", url="https://t.me/PURVI_UPDATES")],
+        [InlineKeyboardButton("📚 ʜᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅs", callback_data="help")]
+    ]
     photo_url = "https://files.catbox.moe/yy0ukm.jpg"
     await client.send_photo(
         chat_id=message.chat.id,
         photo=photo_url,
-        caption=f"<b>✦ » ʜᴇʏ {message.from_user.mention} !!</b>"\n<b>✦ » ɪ ᴀᴍ ᴛᴇʟᴇɢʀᴀᴍ ʀᴇǫᴜᴇsᴛ ᴀᴘᴘʀᴏᴠᴇʀ ʙᴏᴛ ғᴏʀ ɢʀᴏᴜᴘ ᴄʜᴀɴɴᴇʟ.</b>\n\n<b>✦ » ɪ ᴄᴀɴ ᴀᴄᴄᴇᴘᴄᴛ ɴᴇᴡ ʀᴇǫᴜᴇsᴛ ᴀɴᴅ ᴘᴇɴᴅɪɴɢ ʀᴇǫᴜᴇsᴛ. ᴛᴀᴘ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ᴀɴᴅ sᴇᴇ ʜᴇʟᴘs ᴀɴᴅ ᴄᴏᴍᴍᴀɴᴅs.</b>\n\n<b>✦ » 𝐏ᴏᴡᴇʀᴇᴅ 𝖡ʏ » <a href='https://t.me/TheSigmaCoder'>⎯᪵፝֟፝֟⎯꯭𓆩꯭ 𝐀 ꯭ʟ ꯭ᴘ ꯭ʜ꯭ ᴧ꯭⎯꯭꯭‌꯭🥂꯭༎꯭ 𓆪</a></b>",
-        reply_markup=InlineKeyboardMarkup(buttons)
+        caption=(
+            f"<b>✦ » ʜᴇʏ {message.from_user.mention} !!</b>\n\n"
+            "<b>✦ » ɪ ᴀᴍ ᴀɴ ᴀᴜᴛᴏ ʀᴇǫᴜᴇsᴛ ᴀᴘᴘʀᴏᴠᴇʀ ʙᴏᴛ ғᴏʀ ᴛᴇʟᴇɢʀᴀᴍ ɢʀᴏᴜᴘs ᴀɴᴅ ᴄʜᴀɴɴᴇʟs.</b>\n"
+            "<b>✦ » ɪ ᴄᴀɴ ᴀᴜᴛᴏ-ᴀᴄᴄᴇᴘᴛ ɴᴇᴡ ʀᴇǫᴜᴇsᴛs ᴀɴᴅ ᴍᴀɴᴀɢᴇ ᴘᴇɴᴅɪɴɢ ʀᴇǫᴜᴇsᴛs.</b>\n"
+            "<b>✦ » ᴛᴀᴘ ᴛʜᴇ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ᴛᴏ sᴇᴇ ᴄᴏᴍᴍᴀɴᴅs & sᴇᴛᴛɪɴɢs.</b>\n\n"
+            "<b>✦ » 𝐏ᴏᴡᴇʀᴇᴅ 𝐁ʏ » <a href='https://t.me/TheSigmaCoder'>⎯᪵፝֟፝֟⎯꯭𓆩꯭ 𝐀 ꯭ʟ ꯭ᴘ ꯭ʜ꯭ ᴧ꯭⎯꯭꯭‌꯭🥂꯭༎꯭ 𓆪</a></b>"
+        ),
+        reply_markup=InlineKeyboardMarkup(buttons)  
     )
+
 
 @app.on_message(filters.private & filters.command("newsession"))
 async def newsession(client: Client, message: Message):
@@ -173,7 +180,7 @@ async def start_back_callback(_, query: CallbackQuery):
         reply_markup=InlineKeyboardMarkup(
             [
                 [InlineKeyboardButton("➕ ᴀᴅᴅ ᴍᴇ", url=f"https://t.me/{bot_username}?startgroup=botstart")],
-                [InlineKeyboardButton("👑 ᴏᴡɴᴇʀ", url="tg://user?id=7473021518"),
+                [InlineKeyboardButton("👑 ᴏᴡɴᴇʀ", user_id=7473021518),
                  InlineKeyboardButton("📢 ᴜᴘᴅᴀᴛᴇs", url="https://t.me/PURVI_UPDATES")],
                 [InlineKeyboardButton("📚 ʜᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅs", callback_data="help")]
             ]
