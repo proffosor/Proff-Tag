@@ -79,11 +79,20 @@ async def newsession(client: Client, message: Message):
 
 @app.on_message(filters.private & filters.command("removesession"))
 async def removesession(client: Client, message: Message):
-    result = session_col.delete_one({"_id": "session"})
-    if result.deleted_count:
-        await safe_reply(message, "<b>🗑️ sᴇssɪᴏɴ ʀᴇᴍᴏᴠᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ.</b>")
-    else:
-        await safe_reply(message, "<b>⚠️ ɴᴏ sᴇssɪᴏɴ ғᴏᴜɴᴅ.</b>")
+    try:
+        user_id = message.from_user.id
+        result = session_col.delete_one({"user_id": user_id})
+
+        if result.deleted_count:
+            await safe_reply(message, "<b>🗑️ sᴇssɪᴏɴ ʀᴇᴍᴏᴠᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ.</b>")
+        else:
+            await safe_reply(message, "<b>⚠️ you didn't add any session. Please add first.</b>")
+
+    except Exception as e:
+        await safe_reply(
+            message,
+            f"<b>❌ ᴇʀʀᴏʀ ᴡʜɪʟᴇ ʀᴇᴍᴏᴠɪɴɢ sᴇssɪᴏɴ:\n<code>{e}</code></b>"
+        )
 
 @app.on_message(filters.private & filters.command("allapprove"))
 async def allapprove(client: Client, message: Message):
