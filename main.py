@@ -131,6 +131,24 @@ async def autoapprove(client: Client, message: ChatJoinRequest):
         f"<b>✦ » ʜᴇʟʟᴏ {user.mention} ʏᴏᴜ ᴀʀᴇ ɴᴏᴡ ᴀᴜᴛᴏ ᴀᴘᴘʀᴏᴠᴇᴅ ᴀ ᴄʜᴀᴛ : {chat.title}</b>\n\n<b>ᴠɪsɪᴛ » @PURVI_BOTS</b>"
     )
 
+
+@app.on_callback_query(filters.regex("start_back"))
+async def start_back_callback(_, query: CallbackQuery):
+    await query.message.edit_text(
+        f"<b>✦ » ʜᴇʏ {query.from_user.mention}!</b>\n"
+        f"<b>✦ » ɪ ᴀᴍ ᴛᴇʟᴇɢʀᴀᴍ ʀᴇǫᴜᴇsᴛ ᴀᴘᴘʀᴏᴠᴇʀ ʙᴏᴛ ғᴏʀ ɢʀᴏᴜᴘ ᴄʜᴀɴɴᴇʟ.</b>\n\n"
+        f"<b>ɪ ᴄᴀɴ ᴀᴄᴄᴇᴘᴛ ɴᴇᴡ ʀᴇǫᴜᴇsᴛ ᴀɴᴅ ᴘᴇɴᴅɪɴɢ ʀᴇǫᴜᴇsᴛ. ᴛᴀᴘ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ᴀɴᴅ sᴇᴇ ʜᴇʟᴘs ᴀɴᴅ ᴄᴏᴍᴍᴀɴᴅs.</b>\n\n"
+        f"<b>✦ » 𝐏ᴏᴡᴇʀᴇᴅ 𝖡ʏ » ⎯᪵፝֟፝֟⎯꯭𓆩꯭ <a href='https://t.me/TheSigmaCoder'>𝐀 ꯭ʟ ꯭ᴘ ꯭ʜ꯭ ᴧ꯭</a>⎯꯭꯭‌꯭🥂꯭༎꯭ 𓆪</b>",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton("➕ ᴀᴅᴅ ᴍᴇ", url=f"https://t.me/{approved_bot.username}?startgroup=botstart")],
+                [InlineKeyboardButton("👑 ᴏᴡɴᴇʀ", url="tg://user?id=7473021518"),
+                 InlineKeyboardButton("📢 ᴜᴘᴅᴀᴛᴇs", url="https://t.me/PURVI_UPDATES")],
+                [InlineKeyboardButton("📚 ʜᴇʟᴘ & ᴄᴏᴍᴍᴀɴᴅs", callback_data="help_back")]
+            ]
+        ),
+    )
+
 if __name__ == "__main__":
     print("Auto Approved Bot started...")
     app.run()
