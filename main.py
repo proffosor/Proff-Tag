@@ -143,15 +143,16 @@ async def help_callback(_, query):
     await query.message.edit_caption(
         caption=(
             "<b><u>⊚ ʜᴇʀᴇ ᴍʏ ʜᴇʟᴘ ꜰᴜɴᴄᴛɪᴏɴs.</u></b>\n\n"
-            "<b><u>✦ ᴀᴜᴛᴏ ʀᴇǫᴜᴇsᴛ ᴀᴘᴘʀᴏᴠᴇ :-</u> </b>\n\n"
-            "<b>/start</b> — sᴛᴀʀᴛ ʙᴏᴛ\n"
-            "<b>/newsession</b> — ᴀᴅᴅ sᴇssɪᴏɴ\n"
-            "<b>/removesession</b> — ʀᴇᴍᴏᴠᴇ sᴇssɪᴏɴ\n"
-            "<b>/allapprove</b> — ᴀᴘᴘʀᴏᴠᴇ ᴊᴏɪɴ ʀᴇQᴜᴇsᴛs\n\n"
-            "<b>ʜᴏᴡ ᴛᴏ ɢᴇᴛ ᴄʜᴀɴɴᴇʟ, ɢʀᴏᴜᴘ ɪᴅ ᴀɴᴅ sᴇssɪᴏɴ?</b>\n\n"
-            "<b>Channel ID</b> :- ғᴏʀᴡᴀʀᴅ @Purvi_Help_Bot ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ ᴍᴇssᴀɢᴇ ᴀɴᴅ ɢᴇᴛ ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ ɪᴅ.\n"
-            "<b>Group ID</b> :- ᴀᴅᴅ @MissRose_bot ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴀɴᴅ ᴛʏᴘᴇ <code>/id</code>\n"
-            "<b>String session</b> :- ɢᴏ ᴛᴏ @StringFatherRobot ᴀɴᴅ ɢᴇɴᴇʀᴀᴛᴇ ʏᴏᴜʀ sᴇssɪᴏɴ."
+            "<b><u>✦ ᴀᴜᴛᴏ ʀᴇǫᴜᴇsᴛ ᴀᴘᴘʀᴏᴠᴇ :-</u> ᴀᴅᴅ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ/ᴄʜᴀɴɴᴇʟ ᴀɴᴅ ᴍᴀᴋᴇ ᴍᴇ ᴀᴅᴍɪɴ, ɪ ᴡɪʟʟ ʜᴀɴᴅʟᴇ ᴛʜᴇ ʀᴇsᴛ.</b>\n\n"
+            "<b><u>⦿ ᴘᴇɴᴅɪɴɢ ʀᴇǫᴜᴇsᴛ ᴀᴘᴘʀᴏᴠᴇ :-</u></b>\n\n"
+            "➻ /start - <b>sᴛᴀʀᴛ ʙᴏᴛ.</b>\n"
+            "➻ /newsession - <b>ᴀᴅᴅ ɴᴇᴡ sᴇssɪᴏɴ.</b>\n"
+            "➻ /removesession - <b>ʀᴇᴍᴏᴠᴇ sᴇssɪᴏɴ.</b>\n"
+            "➻ /allapprove - <b>ᴀᴘᴘʀᴏᴠᴇ ᴘᴇɴᴅɪɴɢ ʀᴇǫᴜᴇsᴛs.</b>\n\n"
+            "<b><u>✦ ʜᴏᴡ ᴛᴏ ɢᴇᴛ ᴄʜᴀɴɴᴇʟ, ɢʀᴏᴜᴘ ɪᴅ ᴀɴᴅ sᴇssɪᴏɴ ??</u></b>\n\n"
+            "<b>:⧽ ᴄʜᴀɴɴᴇʟ ɪᴅ :- ғᴏʀᴡᴀʀᴅ @Purvi_Help_Bot ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ ᴍᴇssᴀɢᴇ ᴀɴᴅ ɢᴇᴛ ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ ɪᴅ.</b>\n\n"
+            "<b>:⧽ ɢʀᴏᴜᴘ ɪᴅ :- ᴀᴅᴅ @MissRose_bot ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴀɴᴅ ᴛʏᴘᴇ</b> <code>/id</code> <b>ᴛʜᴇɴ ɢᴇᴛ ɪᴅ.</b>\n\n"
+            "<b>:⧽ sᴛʀɪɴɢ sᴇssɪᴏɴ :- ɢᴏ ᴛᴏ @StringFatherRobot ᴀɴᴅ ɢᴇɴᴇʀᴀᴛᴇ ʏᴏᴜʀ ᴘʏʀᴏɢʀᴀᴍ sᴇssɪᴏɴ.</b>"
         ),
         reply_markup=InlineKeyboardMarkup([
             [InlineKeyboardButton("ʙᴀᴄᴋ", callback_data="start_back"),
