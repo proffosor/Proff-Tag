@@ -7,25 +7,29 @@
   "env": {
     "API_ID": {
       "description": "Get from my.telegram.org",
+      "value": "24168862",
       "required": true
     },
     "API_HASH": {
       "description": "Get from my.telegram.org",
+      "value": "916a9424dd1e58ab7955001ccc0172b3",
       "required": true
     },
     "BOT_TOKEN": {
       "description": "Get from @BotFather",
+      "value": "",
       "required": true
     },
     "MONGO_DB_URI": {
       "description": "MongoDB Atlas URI",
+      "value": "mongodb+srv://CHATBOT:Purvichat@cluster0.i3u97sj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
       "required": true
     }
   },
   "formation": {
     "worker": {
       "quantity": 1,
-      "size": "basic" 
+      "size": "basic"
     }
   },
   "buildpacks": [
