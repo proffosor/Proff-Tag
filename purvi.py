@@ -35,7 +35,7 @@ async def start(client: app, message: Message):
 **✦ » ɪ ᴀᴍ ᴘᴏᴡᴇʀғᴜʟ ᴛᴀɢɢᴇʀ ʙᴏᴛ 🤖**
 **✦ » ғᴀsᴛ & sᴍᴏᴏᴛʜ ᴛᴀɢɢɪɴɢ sʏsᴛᴇᴍ 🚀**
 **✦ » ɪ ᴄᴀɴ ᴛᴀɢ ᴀʟʟ ᴍᴇᴍʙᴇʀs ɪɴ ɢʀᴏᴜᴘ ⚡**
-**✦ » ᴊᴜsᴛ ᴀᴅᴅ ᴍᴇ ɪɴ ɢʀᴏᴜᴘ & ᴍᴀᴋᴇ ᴍᴇ ᴀᴅᴍɪɴ 🥂**
+**✦ » ᴊᴜsᴛ ᴀᴅᴅ ᴍᴇ ɪɴ ɢʀᴏᴜᴘ & ᴍᴀᴋᴇ ᴀᴅᴍɪɴ 🥂**
 
 **✦ » ᴄᴏᴍᴍᴀɴᴅs :**
 
@@ -50,30 +50,27 @@ async def start(client: app, message: Message):
 
 @app.on_message(filters.command(["utag", "all", "mention", "tagall"], prefixes=["/", "@"]))
 async def tag_all_users(client: Client, message: Message):
-    
+
     if message.chat.type == enums.ChatType.PRIVATE:
         return await message.reply("⬤ **ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴏɴʟʏ ғᴏʀ ɢʀᴏᴜᴘs.**")
 
-    
     member = await client.get_chat_member(message.chat.id, message.from_user.id)
     if member.status not in [enums.ChatMemberStatus.ADMINISTRATOR, enums.ChatMemberStatus.OWNER]:
         return await message.reply("⬤ **ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴀᴅᴍɪɴ ʙᴀʙʏ.**")
 
-   
     try:
         await message.delete()
-    except Exception:
+    except:
         pass
 
     replied = message.reply_to_message
     text = message.text.split(None, 1)[1] if len(message.command) > 1 else ""
 
     if not replied and not text:
-        return await message.reply("**» ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ/ɢɪᴠᴇ ᴛᴇxᴛ ᴛᴏ ᴛᴀɢ ᴀʟʟ ʟɪᴋᴇ »** `/all Hi Friends`")
+        return await message.reply("**» ʀᴇᴘʟʏ ᴏʀ ɢɪᴠᴇ ᴛᴇxᴛ »** `/all hi ғʀɪᴇɴᴅs`")
 
     spam_chats.add(message.chat.id)
     usernum, usertxt, total_tagged = 0, "", 0
-
 
     try:
         async for member in client.get_chat_members(message.chat.id):
@@ -85,40 +82,43 @@ async def tag_all_users(client: Client, message: Message):
 
             usernum += 1
             total_tagged += 1
-            usertxt += f"⊚ [{member.user.first_name}](tg://user?id={member.user.id})\n"
 
-            if usernum == 5:
+            usertxt += f"[{member.user.first_name}](tg://user?id={member.user.id}), "
+
+            if usernum == 25:
                 try:
+                    final_text = f"""**{text}**
+
+{usertxt.strip(', ')}
+
+**🏆 ᴛᴏᴛᴀʟ ᴜsᴇʀs ᴛᴀɢɢᴇᴅ :** `{total_tagged}`"""
+
                     if replied:
-                        await replied.reply_text(
-                            f"{text}\n\n{usertxt}\n**🏆 ᴛᴏᴛᴀʟ** `{total_tagged}` **ᴜsᴇʀs ᴛᴀɢs ᴅᴏɴᴇ...**"
-                        )
+                        await replied.reply_text(final_text)
                     else:
-                        await message.reply_text(
-                            f"{text}\n\n{usertxt}\n**🏆 ᴛᴏᴛᴀʟ** `{total_tagged}` **ᴜsᴇʀs ᴛᴀɢs ᴅᴏɴᴇ...**"
-                        )
+                        await message.reply_text(final_text)
+
                 except FloodWait as e:
                     await asyncio.sleep(e.value)
-                except Exception:
+                except:
                     pass
 
-                await asyncio.sleep(3)
+                await asyncio.sleep(5)
                 usernum, usertxt = 0, ""
 
         if usertxt:
-            try:
-                if replied:
-                    await replied.reply_text(
-                        f"{text}\n\n{usertxt}\n**🏆 ᴛᴏᴛᴀʟ** `{total_tagged}` **ᴜsᴇʀs ᴛᴀɢs ᴅᴏɴᴇ...**"
-                    )
-                else:
-                    await message.reply_text(
-                        f"{text}\n\n{usertxt}\n**🏆 ᴛᴏᴛᴀʟ** `{total_tagged}` **ᴜsᴇʀs ᴛᴀɢs ᴅᴏɴᴇ...**"
-                    )
-            except Exception:
-                pass
+            final_text = f"""**{text}**
 
-        await message.reply(f"✅ **ᴛᴀɢ ᴄᴏᴍᴘʟᴇᴛᴇᴅ. ᴛᴏᴛᴀʟ :-** `{total_tagged}` **ᴜsᴇʀs.**")
+{usertxt.strip(', ')}
+
+**🏆 ᴛᴏᴛᴀʟ ᴜsᴇʀs ᴛᴀɢɢᴇᴅ :** `{total_tagged}`"""
+
+            if replied:
+                await replied.reply_text(final_text)
+            else:
+                await message.reply_text(final_text)
+
+        await message.reply(f"✅ **ᴛᴀɢ ᴄᴏᴍᴘʟᴇᴛᴇᴅ.**\n\n**» ᴛᴏᴛᴀʟ :** `{total_tagged}` **ᴜsᴇʀs.**")
 
     finally:
         spam_chats.discard(message.chat.id)
