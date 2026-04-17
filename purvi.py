@@ -11,7 +11,7 @@ API_HASH = os.getenv("API_HASH", "e4a5fa251e2e055f26e5c2add8401530")
 BOT_TOKEN = os.getenv("BOT_TOKEN", None)
 
 app = Client(
-    "Auto Approved Bot",
+    "Tagget Bot",
     bot_token=BOT_TOKEN,
     api_id=API_ID,
     api_hash=API_HASH
@@ -22,8 +22,8 @@ async def start(client: app, message: Message):
     approved_bot = await client.get_me()
     buttons = [
         [InlineKeyboardButton("⚜️ ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ ⚜️", url=f"http://t.me/{approved_bot.username}?startgroup=botstart")],
-        [InlineKeyboardButton("🔸 sᴜᴘᴘᴏʀᴛ 🔸", url="https://t.me/PURVI_SUPPORT"),
-         InlineKeyboardButton("▫️ ᴜᴘᴅᴀᴛᴇs ▫️", url="https://t.me/PURVI_UPDATES")]
+        [InlineKeyboardButton("🔸 sᴜᴘᴘᴏʀᴛ 🔸", url="https://t.me/+UUms38xWttkzM2M1"),
+         InlineKeyboardButton("▫️ ᴜᴘᴅᴀᴛᴇs ▫️", url="https://t.me/+6Cjm9Jh3qyQ0ODJl")]
     ]
     photo_url = "https://files.catbox.moe/yy0ukm.jpg"
 
