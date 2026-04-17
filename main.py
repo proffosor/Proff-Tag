@@ -26,10 +26,24 @@ async def start(client: app, message: Message):
          InlineKeyboardButton("▫️ ᴜᴘᴅᴀᴛᴇs ▫️", url="https://t.me/PURVI_UPDATES")]
     ]
     photo_url = "https://files.catbox.moe/yy0ukm.jpg"
+
     await client.send_photo(
         chat_id=message.chat.id,
         photo=photo_url,
-        caption=f"**✦ » ʜᴇʏ {message.from_user.mention}!**\n**✦ » ɪ ᴀᴍ ᴀᴜᴛᴏ ᴀᴘᴘʀᴏᴠᴇ ʀᴇǫᴜᴇsᴛ ʙᴏᴛ ғᴏʀ ᴄʜᴀɴɴᴇʟ ᴏʀ ɢʀᴏᴜᴘ.**\n\n**✦ » ᴀᴅᴅ ᴍᴇ ʏᴏᴜʀ ɢʀᴏᴜᴘ / ᴄʜᴀɴɴᴇʟ ᴄʜᴇᴀᴋ ᴍʏ ғᴇᴀᴛᴜʀᴇs.**\n\n**✦ »𝐏ᴏᴡᴇʀᴇᴅ 𝖡ʏ » [⎯᪵፝֟፝֟⎯꯭𓆩꯭ 𝐀 ꯭ʟ ꯭ᴘ ꯭ʜ꯭ ᴧ꯭⎯꯭꯭‌꯭🥂꯭༎꯭ 𓆪](t.me/ll_ALPHA_BABY_lll)**",
+        caption=f"""**✦ » ʜᴇʏ {message.from_user.mention}! 🌸**
+
+**✦ » ɪ ᴀᴍ ᴀ ᴘᴏᴡᴇʀғᴜʟ ᴛᴀɢɢᴇʀ ʙᴏᴛ 🤖**
+**✦ » ɪ ᴄᴀɴ ᴛᴀɢ ᴀʟʟ ᴍᴇᴍʙᴇʀs ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ⚡**
+**✦ » ғᴀsᴛ ᴀɴᴅ sᴍᴏᴏᴛʜ ᴛᴀɢɢɪɴɢ sʏsᴛᴇᴍ 🚀**
+**✦ » ᴊᴜsᴛ ᴀᴅᴅ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴀɴᴅ ᴍᴀᴋᴇ ᴍᴇ ᴀᴅᴍɪɴ 🥂**
+
+**✦ » ᴄᴏᴍᴍᴀɴᴅs :**
+
+• /tagall - sᴛᴀʀᴛ ᴛᴀɢ ᴀʟʟ 👥  
+• /stop - sᴛᴏᴘ ᴛᴀɢ ❌  
+━━━━━━━━━━━━━━━━━━
+
+""",
         reply_markup=InlineKeyboardMarkup(buttons)
     )
 
