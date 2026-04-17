@@ -1,7 +1,7 @@
 {
-  "name": "Auto Approve Bot",
-  "description": "Telegram Auto Approve Chat Join Requests Bot",
-  "repository": "https://github.com/Im-NotCoder/Auto-Approve",
+  "name": "Tag Bot",
+  "description": "Telegram Tag Bot",
+  "repository": "https://github.com/Im-NotCoder/Proff-Tag",
   "logo": "https://files.catbox.moe/yy0ukm.jpg",
   "keywords": ["pyrogram", "telegram", "bot"],
   "env": {
@@ -20,11 +20,6 @@
       "value": "",
       "required": true
     },
-    "MONGO_DB_URI": {
-      "description": "MongoDB Atlas URI",
-      "value": "mongodb+srv://CHATBOT:Purvichat@cluster0.i3u97sj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
-      "required": true
-    }
   },
   "formation": {
     "worker": {
