@@ -11,7 +11,7 @@ API_HASH = os.getenv("API_HASH", "e4a5fa251e2e055f26e5c2add8401530")
 BOT_TOKEN = os.getenv("BOT_TOKEN", None)
 
 app = Client(
-    "Tagget Bot",
+    "Tagger Bot",
     bot_token=BOT_TOKEN,
     api_id=API_ID,
     api_hash=API_HASH
@@ -85,7 +85,7 @@ async def tag_all_users(client: Client, message: Message):
 
             usertxt += f"[{member.user.first_name}](tg://user?id={member.user.id}), "
 
-            if usernum == 25:
+            if usernum == 20:
                 try:
                     final_text = f"""**{text}**
 
@@ -103,7 +103,7 @@ async def tag_all_users(client: Client, message: Message):
                 except:
                     pass
 
-                await asyncio.sleep(5)
+                await asyncio.sleep(3)
                 usernum, usertxt = 0, ""
 
         if usertxt:
