@@ -85,7 +85,7 @@ async def tag_all_users(client: Client, message: Message):
 
             usertxt += f"[{member.user.first_name}](tg://user?id={member.user.id}), "
 
-            if usernum == 15:
+            if usernum == 10:
                 try:
                     final_text = f"""**{text}**
 
