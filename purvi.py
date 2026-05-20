@@ -22,7 +22,7 @@ async def start(client: app, message: Message):
     approved_bot = await client.get_me()
     buttons = [
         [InlineKeyboardButton("⚜️ ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ ⚜️", url=f"http://t.me/{approved_bot.username}?startgroup=botstart")],
-        [InlineKeyboardButton("🔸 sᴜᴘᴘᴏʀᴛ 🔸", url="https://t.me/+UUms38xWttkzM2M1"),
+        [InlineKeyboardButton("🔸 sᴜᴘᴘᴏʀᴛ 🔸", url="https://t.me/+yP4bWqn2FYkwYzhl"),
          InlineKeyboardButton("▫️ ᴜᴘᴅᴀᴛᴇs ▫️", url="https://t.me/+6Cjm9Jh3qyQ0ODJl")]
     ]
     photo_url = "https://files.catbox.moe/yy0ukm.jpg"
