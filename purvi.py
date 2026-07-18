@@ -8,7 +8,7 @@ spam_chats = set()
 
 API_ID = int(os.getenv("API_ID", "33365118"))
 API_HASH = os.getenv("API_HASH", "dab35edfd4a916fd1d255777ad021e34")
-BOT_TOKEN = os.getenv("BOT_TOKEN", "8875902427:AAEKHn6hUUzCJ-TQp4EoiJX1DQaVgM0snSQ")
+BOT_TOKEN = os.getenv("BOT_TOKEN", "8586075886:AAFX_VSz0GEH9NOfY0sCqNUPbgO_Bko7euQ")
 
 app = Client(
     "Tagger Bot",
